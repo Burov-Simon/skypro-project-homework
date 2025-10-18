@@ -13,3 +13,9 @@ def mask_account_card(account_card: str) -> str:
         return account_card[:-16] + get_mask_card_number(int(count_digit))
     else:
         return account_card[:-20] + get_mask_account(int(count_digit))
+
+
+def get_date(datetime: str) -> str:
+    """Функция которвя возвращает дату ввиду ДД.ММ.ГГГГ"""
+    date = datetime[:10].split("-")
+    return ".".join(date[::-1])
