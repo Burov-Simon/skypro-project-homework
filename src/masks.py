@@ -1,0 +1,19 @@
+def get_mask_card_number(number_card: int) -> str:
+    """Функция маскировки номера банковской карты"""
+    # переводим номер карты в строку и маскируем цифры
+    str_number_card = str(number_card)[:6] + "******" + str(number_card)[-4:]
+
+    # создаем список и через цикл делим строку по 4 символа и добавляем в список
+    list_number_card = []
+    for i in range(0, len(str_number_card), 4):
+        list_number_card.append(str_number_card[i:i + 4])
+
+    # обьединяем список через пробел и выводим результат
+    return " ".join(list_number_card)
+
+
+def get_mask_account(account_number: int) -> str:
+    """Функция маскировки номера счета"""
+    # переводим номер карты в строку и маскируем цифры
+    masked_account = "**" + str(account_number)[-4:]
+    return masked_account
