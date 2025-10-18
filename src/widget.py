@@ -15,7 +15,7 @@ def mask_account_card(account_card: str) -> str:
         return account_card[:-20] + get_mask_account(int(count_digit))
 
 
-def get_date(datetime: str) -> str:
-    """Функция которвя возвращает дату ввиду ДД.ММ.ГГГГ"""
-    date = datetime[:10].split("-")
+def get_date(date_str: str) -> str:
+    """Функция которвя возвращает дату ввиде ДД.ММ.ГГГГ"""
+    date = date_str[:10].split("-")
     return ".".join(date[::-1])
