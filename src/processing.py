@@ -1,5 +1,5 @@
 def filter_by_state(list_dict: list[dict], state: str = "EXECUTED") -> list[dict]:
-    """Функция которая возвращает новый список словарей в соответствии с аргументом state"""
+    """Функция которая возвращает новый список словарей в соответствии с аргументом state (по умолчанию - EXECUTED)"""
     new_list_dict = []
 
     for sta in list_dict:
