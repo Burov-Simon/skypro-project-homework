@@ -1,5 +1,15 @@
-def get_mask_card_number(number_card: int) -> str:
+def get_mask_card_number(number_card: int = None) -> str:
     """Функция маскировки номера банковской карты"""
+    if number_card is None:
+        return 'Номер карты пуст'
+
+    if not isinstance(number_card, int):
+        raise TypeError('Номер должен состоять из цифр')
+
+    if len(str(number_card)) != 16 or number_card < 0:
+        return 'Номер должен состоять из 16 цифр'
+
+
     # переводим номер карты в строку и маскируем цифры
     str_number_card = str(number_card)[:6] + "******" + str(number_card)[-4:]
 
