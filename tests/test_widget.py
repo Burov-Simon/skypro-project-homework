@@ -14,7 +14,7 @@ from src.widget import mask_account_card, get_date
         ("Счет 73654108430135874305", "Счет **4305"),
     ],
 )
-def test_mask_account_card(account_card, expected) -> None:
+def test_mask_account_card(account_card: str, expected: str) -> None:
     assert mask_account_card(account_card) == expected
 
 
@@ -39,7 +39,7 @@ def test_empty_string() -> None:
         ("1999-12-31T23:59:59", "31.12.1999"),
     ],
 )
-def test_valid_date(date_str, expected) -> None:
+def test_valid_date(date_str: str, expected: str) -> None:
     assert get_date(date_str) == expected
 
 
