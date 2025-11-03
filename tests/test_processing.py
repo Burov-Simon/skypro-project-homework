@@ -4,8 +4,11 @@ from typing import Any, Dict, List
 
 # Тестирование функсии filter_by_state()
 # Тестирование фильтрации списка словарей по заданному статусу state
-def test_filter_by_state(list_dicts: List[Dict[str, Any]], list_dicts_executed: List[Dict[str, Any]],
-                         list_dicts_canceled: List[Dict[str, Any]]) -> None:
+def test_filter_by_state(
+    list_dicts: List[Dict[str, Any]],
+    list_dicts_executed: List[Dict[str, Any]],
+    list_dicts_canceled: List[Dict[str, Any]],
+) -> None:
     assert filter_by_state(list_dicts, "EXECUTED") == list_dicts_executed
     assert filter_by_state(list_dicts, "CANCELED") == list_dicts_canceled
     assert filter_by_state(list_dicts) == list_dicts_executed
@@ -18,8 +21,11 @@ def test_filter_by_state_no_matches(list_dicts: List[Dict[str, Any]]) -> None:
 
 # Тестирование функции sort_by_date()
 # Тестирование сортировки списка словарей по датам в порядке убывания и возрастания.
-def test_sort_by_date_descending(list_dicts: List[Dict[str, Any]], list_dicts_descending: List[Dict[str, Any]],
-                                 list_dicts_ascending: List[Dict[str, Any]]) -> None:
+def test_sort_by_date_descending(
+    list_dicts: List[Dict[str, Any]],
+    list_dicts_descending: List[Dict[str, Any]],
+    list_dicts_ascending: List[Dict[str, Any]],
+) -> None:
     assert sort_by_date(list_dicts, descending=True) == list_dicts_descending
     assert sort_by_date(list_dicts, descending=False) == list_dicts_ascending
 
