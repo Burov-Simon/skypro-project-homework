@@ -1,5 +1,6 @@
-from src.generators import (card_number_generator, filter_by_currency,
-                            transaction_descriptions)
+import pytest
+
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 
 # Тест функции filter_by_currency()
@@ -40,8 +41,9 @@ def test_filter_by_currency(transact: list) -> None:
 
 # тест на пустой список и неправильную валюту
 def test_filter_without_or_wrong_currency(transact: list) -> None:
-    empty_transaction = filter_by_currency([])
-    assert list(empty_transaction) == []
+    empty_transaction = filter_by_currency([], None)
+    with pytest.raises(TypeError):
+        list(empty_transaction)
     wrong_currency = filter_by_currency(transact, "USDa")
     assert list(wrong_currency) == []
 
@@ -68,28 +70,45 @@ def test_transaction_descriptions_empty(transact: list) -> None:
 
 # Тест функции card_number_generator()
 # тест выдачи правильных номеров карт в заданном диапазоне.
-def test_card_number_generator():
-    expected_number_card = [
-        "0000 0000 0000 0001",
-        "0000 0000 0000 0002",
-        "0000 0000 0000 0003",
-        "0000 0000 0000 0004",
-        "0000 0000 0000 0005",
-    ]
-    card_number = card_number_generator(1, 5)
+@pytest.mark.parametrize(
+    "start, end, expected_number_card",
+    [
+        (
+            1,
+            5,
+            [
+                "0000 0000 0000 0001",
+                "0000 0000 0000 0002",
+                "0000 0000 0000 0003",
+                "0000 0000 0000 0004",
+                "0000 0000 0000 0005",
+            ],
+        ),
+        (
+            9999,
+            10001,
+            [
+                "0000 0000 0000 9999",
+                "0000 0000 0001 0000",
+                "0000 0000 0001 0001",
+            ],
+        ),
+    ],
+)
+def test_card_number_generator(start, end, expected_number_card):
+    card_number = card_number_generator(start, end)
     assert list(card_number) == expected_number_card
 
 
-# тест на обработку крайних значений диапазона
+# тест на обработку крайних значений диапазона и данных
 def test_card_number_generator_range():
-    start = 9999
-    end = 10001
-    generated_cards = card_number_generator(start, end)
-
-    expected_cards = [
-        "0000 0000 0000 9999",
-        "0000 0000 0001 0000",
-        "0000 0000 0001 0001",
-    ]
-
-    assert list(generated_cards) == expected_cards
+    _test_error_1 = card_number_generator(-1, 1)
+    _test_error_2 = card_number_generator(2, 1)
+    _test_error_3 = card_number_generator(1, 10000000000000000)
+    with pytest.raises(ValueError):
+        next(_test_error_1)
+        next(_test_error_2)
+        next(_test_error_3)
+    _test_error_4 = card_number_generator("qwer", "ty")
+    with pytest.raises(TypeError):
+        next(_test_error_4)
