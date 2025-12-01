@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-
 path_file_operations = Path.cwd() / 'data' / 'operations.json'
+
 
 def get_file_operations(path_file_operations):
     """Функция, которая принимает на вход путь до JSON-файла
@@ -22,4 +22,4 @@ def get_file_operations(path_file_operations):
         print('Файл не найден!')
         return []
 
-print(get_file_operations(path_file_operations))
+
