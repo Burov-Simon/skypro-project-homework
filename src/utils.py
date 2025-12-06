@@ -1,23 +1,39 @@
 import json
+import logging
+import os
 from pathlib import Path
 
-path_file_operations = Path.cwd() / "data" / "operations.json"
+os.makedirs("logs", exist_ok=True)
+
+logger = logging.getLogger("utils.py")
+logger.setLevel(logging.DEBUG)
+file_handler = logging.FileHandler("logs/utils.log", encoding="utf-8", mode="w")
+file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+file_handler.setFormatter(file_formatter)
+logger.addHandler(file_handler)
+
+path_file_json = Path.cwd() / "data" / "operations.json"
 
 
-def get_file_operations(path_file_operations):
+logger.info("Запуск модуля utils.py")
+
+
+def get_file_operations(path):
     """Функция, которая принимает на вход путь до JSON-файла
     и возвращает список словарей с данными о финансовых транзакциях"""
+    logger.info("Запуск программы!")
     try:
-        with open(path_file_operations, "r", encoding="utf-8") as f:
+        with open(path, "r", encoding="utf-8") as f:
             try:
                 data = json.load(f)
                 if not isinstance(data, list):
-                    print("Данные в файле не являются списком")
+                    logger.error("Данные в файле не являются списком!")
                     return []
+                logger.info("Функция выполнена успешно!")
                 return data
             except json.decoder.JSONDecodeError:
-                print("Ошибка чтении файла")
+                logger.error("Ошибка чтении файла!")
                 return []
     except FileNotFoundError:
-        print("Файл не найден!")
+        logger.error("Файл не найден!")
         return []
