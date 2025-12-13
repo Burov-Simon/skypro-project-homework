@@ -8,11 +8,12 @@ some_dict = [
     {"id": 594226727, "state": "CANCELED", "date": "2018-09-12T21:27:25.241689"},
     {"id": 615064591, "state": "CANCELED", "date": "2018-10-14T08:21:33.419441"},
 ]
-print(get_mask_card_number(7000792289606361))
-print(get_mask_account(73654108430135874305))
-print(mask_account_card("Visa Platinum 7000792289606361"))
-print(mask_account_card("Maestro 7000792289606361"))
-print(mask_account_card("Счет 73654108430135874305"))
-print(get_date("2024-03-11T02:26:18.671407"))
-print(filter_by_state(some_dict))
-print(sort_by_date(some_dict))
+if __name__ == "__main__":
+    print(get_mask_card_number(7000792289606361))
+    print(get_mask_account(73654108430135874305))
+    print(mask_account_card("Visa Platinum 7000792289606361"))
+    print(mask_account_card("Maestro 7000792289606361"))
+    print(mask_account_card("Счет 73654108430135874305"))
+    print(get_date("2024-03-11T02:26:18.671407"))
+    print(filter_by_state(some_dict))
+    print(sort_by_date(some_dict))
