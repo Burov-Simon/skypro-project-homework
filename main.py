@@ -1,5 +1,6 @@
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
+from src.transaction_reader import path_file_csv, path_file_excel, trans_reader_csv, trans_reader_excel
 from src.widget import get_date, mask_account_card
 
 some_dict = [
@@ -17,3 +18,5 @@ if __name__ == "__main__":
     print(get_date("2024-03-11T02:26:18.671407"))
     print(filter_by_state(some_dict))
     print(sort_by_date(some_dict))
+    print(trans_reader_csv(path_file_csv))
+    print(trans_reader_excel(path_file_excel))
