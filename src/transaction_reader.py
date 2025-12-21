@@ -21,7 +21,7 @@ def trans_reader_csv(file_path_csv):
     """Функция чтения csv файла"""
     logger.info("Запуск программы")
     try:
-        df = pd.read_csv(file_path_csv)
+        df = pd.read_csv(file_path_csv, sep=";", encoding="utf-8")
         logger.info("Успешно!")
         return df.to_dict("records")
     except FileNotFoundError:
