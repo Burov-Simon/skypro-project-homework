@@ -4,7 +4,6 @@ import pandas as pd
 
 from src.transaction_reader import trans_reader_csv, trans_reader_excel
 
-
 trans_test_value = [
     {
         "id": 207126257,
